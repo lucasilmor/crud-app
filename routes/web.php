@@ -17,4 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//utilizando o auth do breeze para garantia q só autenticados possam fazer o CRUD
+Route::middleware(['auth'])->group(function () {
+   
+});
+
 require __DIR__.'/auth.php';
