@@ -15,6 +15,12 @@ class DashboardController extends Controller
         return view('dashboard', ['dadosDoCrud' => $dadosDoCrud]);
     }
 
+    //FUNÇÃO SHOW PARA MOSTRAR OS REGISTROS INDIVIDUALMENTE
+    public function show(Personagem $personagem)
+    {
+        return view('personagens.show', compact('personagem'));
+    }
+
     //FUNÇÃO PARA ACESSAR O FORMULARIO DE CRIAÇÃO DE REGISTROS
     public function create(){
         return view('personagens.create');
@@ -50,7 +56,6 @@ class DashboardController extends Controller
     }
 
     //FUNÇÃO UPDATE
-
     public function update(Request $request, Personagem $personagem)
     {
         // Valide os dados do formulário
@@ -79,6 +84,6 @@ class DashboardController extends Controller
         $personagem->delete();
 
         return redirect()->back()->with('success', 'Personagem excluído com sucesso.');
-    }
+    }   
 
 }

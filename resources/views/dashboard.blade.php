@@ -48,6 +48,9 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('personagens.edit', $dado->id) }}" class="text-sm text-gray-700 bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded">Editar</a>
+
+                                        <a href="{{ route('personagens.show', $dado->id) }}" class="text-sm text-gray-700 bg-green-500 hover:bg-green-700 px-4 py-2 rounded">Visualizar</a>
+                                        
                                         <form action="{{ route('personagens.destroy', $dado->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
@@ -58,8 +61,11 @@
                             @endforeach
                             <tr>
                                 <td>
+                                <div class="flex items-center justify-end mt-4">
+                                
                                      <a href="{{ route('personagens.create') }}" class="text-sm text-gray-700 underline">
                                         Adicionar Novo Personagem</a>
+                                </div>
                                 </td>
                             </tr>
                         </tbody>

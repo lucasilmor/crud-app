@@ -19,6 +19,9 @@ Route::middleware(['auth'])->group(function () { //utilizando o auth do breeze p
     //rota responsavel por carregar os dados da model
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    //rota necessaria para abrir a view de detalhes dos registros
+    Route::get('/personagens/{personagem}/show', [DashboardController::class, 'show'])->name('personagens.show');
+
     //rota necessaria para abrir o formulario de criação
     Route::get('/personagens/create', [DashboardController::class, 'create'])->name('personagens.create'); 
 
