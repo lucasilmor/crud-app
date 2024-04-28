@@ -43,4 +43,42 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with('success', 'Personagem adicionado com sucesso!');
     }
 
+    //FUNÇÃO PARA ACESSAR O FORMULARIO DE EDIÇÃO DE REGISTROS
+    public function edit(Personagem $personagem)
+    {
+        return view('personagens.edit', compact('personagem'));
+    }
+
+    //FUNÇÃO UPDATE
+
+    public function update(Request $request, Personagem $personagem)
+    {
+        // Valide os dados do formulário
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'categoria' => 'required|string|max:255',
+            'imagem' => 'required|string|max:255',
+        ]);
+
+        // Atualize os dados do personagem com base nos dados do formulário
+        $personagem->update([
+            'nome' => $request->nome,
+            'descrição' => $request->descricao,
+            'categoria' => $request->categoria,
+            'imagem' => $request->imagem,
+        ]);
+
+        // Redirecione de volta para a página de detalhes do personagem com uma mensagem de sucesso
+        return redirect()->route('dashboard', $personagem->id)->with('success', 'Personagem atualizado com sucesso.');
+    }
+    
+    //FUNÇÃO DELETE
+    public function destroy(Request $request, Personagem $personagem)
+    {
+        $personagem->delete();
+
+        return redirect()->back()->with('success', 'Personagem excluído com sucesso.');
+    }
+
 }

@@ -25,10 +25,15 @@ Route::middleware(['auth'])->group(function () { //utilizando o auth do breeze p
     //rota que executa a criação de um novo registro
     Route::post('/personagens', [DashboardController::class, 'store'])->name('personagens.store');
 
+    //rota necessaria para abrir o formulario de edição
+    Route::get('/personagens/{personagem}/edit', [DashboardController::class, 'edit'])->name('personagens.edit');
+
+    //rota que executa a função de atulizar um novo registro
+    Route::put('/personagens/{personagem}', [DashboardController::class, 'update'])->name('personagens.update');
+
+
     //rota para deletar registros
-    Route::delete('/personagens/{id}', [DashboardController::class, 'destroy'])->name('personagens.destroy');
-
-
+    Route::delete('/personagens/{personagem}', [DashboardController::class, 'destroy'])->name('personagens.destroy');
 });
 
 require __DIR__.'/auth.php';
